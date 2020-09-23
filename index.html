@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ToDo List</title>
+</head>
+<body>
+  <h1 id="h1_list">ToDoリスト</h1>
+  <ul id="ul_list">
+  </ul>
+  <h2 id="h2_add">ToDoリストにタスクを追加</h2>
+  <form action="" id="form_add" onsubmit="return false;">
+    <input type="text" id="input_text_add">
+    <input type="button" id="input_button_add" value="追加">
+  </form>
+  <script>
+    var h1_list = document.getElementById('h1_list');
+    var ul_list = document.getElementById('ul_list');
+    // var li_list = document.getElementsByTagName('li');
+    var id_number_li = 0;
+    // var button_list = document.getElementsByTagName('button');
+    var id_number_button = 0;
+    var h2_add = document.getElementById('h2_add');
+    var form_add = document.getElementById('form_add');
+    var input_add = document.getElementById('input_text_add');
+    var button_add = document.getElementById('input_button_add');
+    input_button_add.addEventListener('click', function() {
+      var li_list = document.createElement('li');
+      // var id_number_li = document.getElementsByTagName('li').length;
+      id_number_li++;
+      li_list.setAttribute('id', `li_${id_number_li}_list`);
+      li_list.innerHTML = input_text_add.value;
+      li_list.innerHTML.addEventListener('dblclick', function() {
+        li_list.innerHTML = '<input type="text" value="">';
+      });
+      ul_list.appendChild(li_list);
+      var button_list = document.createElement('button');
+      // var id_number_button = document.getElementsByTagName('button').length;
+      id_number_button++;
+      button_list.setAttribute('id', `button_${id_number_button}_list`);
+      button_list.setAttribute('type', 'button');
+      button_list.innerHTML = "削除";
+      button_list.addEventListener('click', function() {
+        this.parentElement.remove();
+      });
+      li_list.appendChild(button_list);
+      form_add.reset();
+    });
+  </script>
+</body>
+</html>
